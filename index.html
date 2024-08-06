@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,19 +12,17 @@
 
         * {
             font-family: "Gowun Dodum", sans-serif;
-            color : white;
         }
 
         .main {
             color: white;
-
             background-image: url('https://occ-0-1123-1217.1.nflxso.net/dnm/api/v6/6AYY37jfdO6hpXcMjf9Yu5cnmO0/AAAABeIfo7VL_VDyKnljV66IkR-4XLb6xpZqhpLSo3JUtbivnEW4s60PD27muH1mdaANM_8rGpgbm6L2oDgA_iELHZLZ2IQjG5lvp5d2.jpg?r=e6e.jpg');
             background-position: center;
             background-size: cover;
         }
-        
-        body { 
-          background-color: black;
+
+        body {
+            background-color: black;
         }
 
         .mycards {
@@ -34,138 +33,143 @@
         .mypostingbox {
             width: 500px;
             margin: 20px auto 20px auto;
-
             border: 1px solid white;
             padding: 20px;
             border-radius: 5px;
         }
-        .form-floating > input {
+
+        .form-floating>input {
             background-color: transparent;
             color: white;
         }
-        .form-floating > label {
+
+        .form-floating>label {
             color: white;
         }
-        .input-group > label {
+
+        .input-group>label {
             background-color: transparent;
             color: white;
         }
     </style>
 </head>
+
 <body>
-  <header class="p-3 text-bg-dark">
-    <div class="container">
-      <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-        <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
-          <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap"><use xlink:href="#bootstrap"></use></svg>
-        </a>
+    <header class="p-3 text-bg-dark">
+        <div class="container">
+            <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+                <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
+                    <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap">
+                        <use xlink:href="#bootstrap"></use>
+                    </svg>
+                </a>
 
-        <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-          <li><a href="#" class="nav-link px-2 text-danger">Flix</a></li>
-          <li><a href="#" class="nav-link px-2 text-white">홈</a></li>
-          <li><a href="#" class="nav-link px-2 text-white">시리즈</a></li>
-          <li><a href="#" class="nav-link px-2 text-white">영화</a></li>
-          <li><a href="#" class="nav-link px-2 text-white">내가 찜한 콘텐츠</a></li>
-        </ul>
+                <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+                    <li><a href="#" class="nav-link px-2 text-danger">Flix</a></li>
+                    <li><a href="#" class="nav-link px-2 text-white">홈</a></li>
+                    <li><a href="#" class="nav-link px-2 text-white">시리즈</a></li>
+                    <li><a href="#" class="nav-link px-2 text-white">영화</a></li>
+                    <li><a href="#" class="nav-link px-2 text-white">내가 찜한 콘텐츠</a></li>
+                </ul>
 
-        <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
-          <input type="search" class="form-control form-control-dark text-bg-dark" placeholder="Search..." aria-label="Search">
-        </form>
+                <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
+                    <input type="search" class="form-control form-control-dark text-bg-dark" placeholder="Search..."
+                        aria-label="Search">
+                </form>
 
-        <div class="text-end">
-          <button type="button" class="btn btn-outline-light me-2">Login</button>
-          <button type="button" class="btn btn-warning">Sign-up</button>
-        </div>
-      </div>
-    </div>
-  </header>
-<div class="main">
-  <div class="p-5 mb-4 bg-body-tertiary rounded-3">
-    <div class="container-fluid py-5">
-      <h1 class="display-5 fw-bold">반지의 제왕 : 왕의 귀환</h1>
-      <p class="col-md-8 fs-4">아라곤이 고대 왕의 후계자로 밝혀지고, 그와 간달프는 뿔뿔이 흩어져버린 반지 원정대와 함께 곤도르를 구하기 위해 약전고투한다.</p>
-      <button onclick="openclose()" type="button" class="btn btn-outline-light">영화 기록하기</button>
-      <button type="button" class="btn btn-outline-light">상세정보</button>
-    </div>
-  </div>
-  </div>
-
-  <div class="mypostingbox">
-    <div class="form-floating mb-3">
-        <input type="email" class="form-control" id="floatingInput" placeholder="영화 이미지 주소">
-        <label for="floatingInput">영화 이미지 주소</label>
-    </div>
-    <div class="form-floating mb-3">
-        <input type="email" class="form-control" id="floatingInput" placeholder="영화 제목">
-        <label for="floatingInput">영화 제목</label>
-    </div>
-    <div class="input-group mb-3">
-        <label class="input-group-text" for="inputGroupSelect01">별점</label>
-        <select class="form-select">
-            <option selected>별점선택</option>
-            <option value="1">⭐</option>
-            <option value="2">⭐⭐</option>
-            <option value="3">⭐⭐⭐</option>
-            <option value="4">⭐⭐⭐⭐</option>
-            <option value="5">⭐⭐⭐⭐⭐</option>
-        </select>
-    </div>
-    <div class="form-floating mb-3">
-        <input type="email" class="form-control" id="floatingInput" placeholder="추천 이유">
-        <label for="floatingInput">추천 이유</label>
-    </div>
-    <button type="button" class="btn btn-danger">기록하기</button>
-</div>
-
-
-  <div class="mycards">
-    <div class="row row-cols-1 row-cols-md-4 g-4">
-        <div class="col">
-            <div class="card h-100">
-                <img src="https://movie-phinf.pstatic.net/20210728_221/1627440327667GyoYj_JPEG/movie_image.jpg"
-                    class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">영화 제목</h5>
-                    <p class="card-text">⭐⭐⭐</p>
-                    <p class="card-text">영화 코멘트</p>
+                <div class="text-end">
+                    <button type="button" class="btn btn-outline-light me-2">Login</button>
+                    <button type="button" class="btn btn-warning">Sign-up</button>
                 </div>
             </div>
         </div>
-        <div class="col">
-            <div class="card h-100">
-                <img src="https://movie-phinf.pstatic.net/20210728_221/1627440327667GyoYj_JPEG/movie_image.jpg"
-                    class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">영화 제목</h5>
-                    <p class="card-text">⭐⭐⭐</p>
-                    <p class="card-text">영화 코멘트</p>
-                </div>
+    </header>
+    <div class="main">
+        <div class="p-5 mb-4 bg-body-tertiary rounded-3">
+            <div class="container-fluid py-5">
+                <h1 class="display-5 fw-bold">반지의 제왕 : 왕의 귀환</h1>
+                <p class="col-md-8 fs-4">아라곤이 고대 왕의 후계자로 밝혀지고, 그와 간달프는 뿔뿔이 흩어져버린 반지 원정대와 함께 곤도르를 구하기 위해 약전고투한다.</p>
+                <button onclick="openclose()" type="button" class="btn btn-outline-light">영화 기록하기</button>
+                <button type="button" class="btn btn-outline-light">상세정보</button>
             </div>
         </div>
-        <div class="col">
-            <div class="card h-100">
-                <img src="https://movie-phinf.pstatic.net/20210728_221/1627440327667GyoYj_JPEG/movie_image.jpg"
-                    class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">영화 제목</h5>
-                    <p class="card-text">⭐⭐⭐</p>
-                    <p class="card-text">영화 코멘트</p>
-                </div>
-            </div>
-        </div>
-        <div class="col">
-            <div class="card h-100">
-                <img src="https://movie-phinf.pstatic.net/20210728_221/1627440327667GyoYj_JPEG/movie_image.jpg"
-                    class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">영화 제목</h5>
-                    <p class="card-text">⭐⭐⭐</p>
-                    <p class="card-text">영화 코멘트</p>
-                </div>
-            </div>
-        </div>
+    </div>
 
-</div>
-</div>
+    <div class="mypostingbox">
+        <div class="form-floating mb-3">
+            <input type="text" class="form-control" id="movieImage" placeholder="영화 이미지 주소">
+            <label for="movieImage">영화 이미지 주소</label>
+        </div>
+        <div class="form-floating mb-3">
+            <input type="text" class="form-control" id="movieTitle" placeholder="영화 제목">
+            <label for="movieTitle">영화 제목</label>
+        </div>
+        <div class="input-group mb-3">
+            <label class="input-group-text" for="movieRating">별점</label>
+            <select class="form-select" id="movieRating">
+                <option selected>별점선택</option>
+                <option value="1">⭐</option>
+                <option value="2">⭐⭐</option>
+                <option value="3">⭐⭐⭐</option>
+                <option value="4">⭐⭐⭐⭐</option>
+                <option value="5">⭐⭐⭐⭐⭐</option>
+            </select>
+        </div>
+        <div class="form-floating mb-3">
+            <input type="text" class="form-control" id="movieComment" placeholder="추천 이유">
+            <label for="movieComment">추천 이유</label>
+        </div>
+        <button type="button" class="btn btn-danger" onclick="addCard()">기록하기</button>
+    </div>
+
+    <div class="mycards">
+        <div class="row row-cols-1 row-cols-md-4 g-4" id="cardContainer">
+            <div class="col">
+                <div class="card h-100">
+                    <img src="https://movie-phinf.pstatic.net/20210728_221/1627440327667GyoYj_JPEG/movie_image.jpg"
+                        class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">영화 제목</h5>
+                        <p class="card-text">⭐⭐⭐</p>
+                        <p class="card-text">영화 코멘트</p>
+                    </div>
+                </div>
+            </div>
+            <!-- New cards will be appended here -->
+        </div>
+    </div>
+
+    <script>
+        function addCard() {
+            const image = document.getElementById('movieImage').value;
+            const title = document.getElementById('movieTitle').value;
+            const rating = document.getElementById('movieRating').value;
+            const comment = document.getElementById('movieComment').value;
+
+            const cardContainer = document.getElementById('cardContainer');
+
+            const newCard = document.createElement('div');
+            newCard.classList.add('col');
+            newCard.innerHTML = `
+                <div class="card h-100">
+                    <img src="${image}" class="card-img-top" alt="${title}">
+                    <div class="card-body">
+                        <h5 class="card-title">${title}</h5>
+                        <p class="card-text">${'⭐'.repeat(rating)}</p>
+                        <p class="card-text">${comment}</p>
+                    </div>
+                </div>
+            `;
+
+            cardContainer.appendChild(newCard);
+
+            // Clear the input fields after adding the card
+            document.getElementById('movieImage').value = '';
+            document.getElementById('movieTitle').value = '';
+            document.getElementById('movieRating').value = '별점선택';
+            document.getElementById('movieComment').value = '';
+        }
+    </script>
 </body>
+
 </html>
