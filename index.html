@@ -7,6 +7,7 @@
     <title>플릭스</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap');
 
@@ -119,7 +120,7 @@
             <input type="text" class="form-control" id="movieComment" placeholder="추천 이유">
             <label for="movieComment">추천 이유</label>
         </div>
-        <button type="button" class="btn btn-danger" onclick="addCard()">기록하기</button>
+        <button type="button" class="btn btn-danger" id="addCardButton">기록하기</button>
     </div>
 
     <div class="mycards">
@@ -140,35 +141,59 @@
     </div>
 
     <script>
-        function addCard() {
-            const image = document.getElementById('movieImage').value;
-            const title = document.getElementById('movieTitle').value;
-            const rating = document.getElementById('movieRating').value;
-            const comment = document.getElementById('movieComment').value;
+        $(document).ready(function () {
+            $('#addCardButton').click(function () {
+                const image = $('#movieImage').val();
+                const title = $('#movieTitle').val();
+                const rating = $('#movieRating').val();
+                const comment = $('#movieComment').val();
 
-            const cardContainer = document.getElementById('cardContainer');
+                // URL 유효성 검사 함수
+                function isValidURL(string) {
+                    var res = string.match(/(http|https):\/\/(\w+:?\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/);
+                    return (res !== null);
+                }
 
-            const newCard = document.createElement('div');
-            newCard.classList.add('col');
-            newCard.innerHTML = `
-                <div class="card h-100">
-                    <img src="${image}" class="card-img-top" alt="${title}">
-                    <div class="card-body">
-                        <h5 class="card-title">${title}</h5>
-                        <p class="card-text">${'⭐'.repeat(rating)}</p>
-                        <p class="card-text">${comment}</p>
+                // 입력값 검증
+                if (!image || !isValidURL(image)) {
+                    alert("유효한 영화 이미지 주소를 입력해주세요.");
+                    return;
+                }
+                if (!title) {
+                    alert("영화 제목을 입력해주세요.");
+                    return;
+                }
+                if (!rating || rating === "별점선택") {
+                    alert("별점을 선택해주세요.");
+                    return;
+                }
+                if (!comment) {
+                    alert("추천 이유를 입력해주세요.");
+                    return;
+                }
+
+                const newCard = `
+                    <div class="col">
+                        <div class="card h-100">
+                            <img src="${image}" class="card-img-top" alt="${title}">
+                            <div class="card-body">
+                                <h5 class="card-title">${title}</h5>
+                                <p class="card-text">${'⭐'.repeat(rating)}</p>
+                                <p class="card-text">${comment}</p>
+                            </div>
+                        </div>
                     </div>
-                </div>
-            `;
+                `;
 
-            cardContainer.appendChild(newCard);
+                $('#cardContainer').append(newCard);
 
-            // Clear the input fields after adding the card
-            document.getElementById('movieImage').value = '';
-            document.getElementById('movieTitle').value = '';
-            document.getElementById('movieRating').value = '별점선택';
-            document.getElementById('movieComment').value = '';
-        }
+                // 입력 필드 초기화
+                $('#movieImage').val('');
+                $('#movieTitle').val('');
+                $('#movieRating').val('별점선택');
+                $('#movieComment').val('');
+            });
+        });
     </script>
 </body>
 
