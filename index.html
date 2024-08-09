@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>플릭스</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <style>
@@ -52,6 +53,70 @@
             color: white;
         }
     </style>
+    <script type="module">
+        // Firebase SDK 라이브러리 가져오기
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.3.1/firebase-app.js";
+        import { getFirestore, collection, addDoc, getDocs } from "https://www.gstatic.com/firebasejs/10.3.1/firebase-firestore.js";
+
+        // Firebase 구성
+        const firebaseConfig = {
+ //설정값 넣기
+        };
+
+        // Firebase 인스턴스 초기화
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        // 버튼 클릭 이벤트 핸들러
+        $("#postingbtn").click(async function () {
+            let image = $('#image').val(); 
+            let title = $('#title').val(); 
+            let comment = $('#comment').val(); 
+            let star = $('#star').val();  
+
+            let doc = {
+                image,
+                title,
+                comment,
+                star
+            };
+
+            try {
+                await addDoc(collection(db, "movies"), doc);
+                alert('저장 완료!');
+                window.location.reload();
+            } catch (e) {
+                console.error("Error adding document: ", e);
+            }
+        });
+
+        let docs = await getDocs(collection(db, "movies"));
+        docs.forEach((doc) => {
+
+            let row = doc.data();
+            let image = row['image']
+            let title = row['title']
+            let star = "⭐".repeat(row['star']);
+            let comment = row['comment']
+
+            let tempHtml =
+                `<div class="col">
+                    <div class="card h-100">
+                        <img src="${image}"
+                            class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">${title}</h5>
+                            <p>${star}</p>
+                            <p class="comment">${comment}</p>
+                        </div>
+                    </div>
+                </div>`;
+
+            $("#cardContainer").append(tempHtml); 
+        });
+
+    </script>
+
 </head>
 
 <body>
@@ -97,16 +162,16 @@
 
     <div class="mypostingbox">
         <div class="form-floating mb-3">
-            <input type="text" class="form-control" id="movieImage" placeholder="영화 이미지 주소">
-            <label for="movieImage">영화 이미지 주소</label>
+            <input type="text" class="form-control" id="image" placeholder="영화 이미지 주소">
+            <label for="image">영화 이미지 주소</label>
         </div>
         <div class="form-floating mb-3">
-            <input type="text" class="form-control" id="movieTitle" placeholder="영화 제목">
-            <label for="movieTitle">영화 제목</label>
+            <input type="text" class="form-control" id="title" placeholder="영화 제목">
+            <label for="title">영화 제목</label>
         </div>
         <div class="input-group mb-3">
-            <label class="input-group-text" for="movieRating">별점</label>
-            <select class="form-select" id="movieRating">
+            <label class="input-group-text" for="star">별점</label> 
+            <select class="form-select" id="star"> 
                 <option selected>별점선택</option>
                 <option value="1">⭐</option>
                 <option value="2">⭐⭐</option>
@@ -116,10 +181,10 @@
             </select>
         </div>
         <div class="form-floating mb-3">
-            <input type="text" class="form-control" id="movieComment" placeholder="추천 이유">
-            <label for="movieComment">추천 이유</label>
+            <input type="text" class="form-control" id="comment" placeholder="추천 이유">
+            <label for="comment">추천 이유</label>
         </div>
-        <button type="button" class="btn btn-danger" onclick="addCard()">기록하기</button>
+        <button type="button" class="btn btn-danger" id="postingbtn">기록하기</button>
     </div>
 
     <div class="mycards">
@@ -138,38 +203,6 @@
             <!-- New cards will be appended here -->
         </div>
     </div>
-
-    <script>
-        function addCard() {
-            const image = document.getElementById('movieImage').value;
-            const title = document.getElementById('movieTitle').value;
-            const rating = document.getElementById('movieRating').value;
-            const comment = document.getElementById('movieComment').value;
-
-            const cardContainer = document.getElementById('cardContainer');
-
-            const newCard = document.createElement('div');
-            newCard.classList.add('col');
-            newCard.innerHTML = `
-                <div class="card h-100">
-                    <img src="${image}" class="card-img-top" alt="${title}">
-                    <div class="card-body">
-                        <h5 class="card-title">${title}</h5>
-                        <p class="card-text">${'⭐'.repeat(rating)}</p>
-                        <p class="card-text">${comment}</p>
-                    </div>
-                </div>
-            `;
-
-            cardContainer.appendChild(newCard);
-
-            // Clear the input fields after adding the card
-            document.getElementById('movieImage').value = '';
-            document.getElementById('movieTitle').value = '';
-            document.getElementById('movieRating').value = '별점선택';
-            document.getElementById('movieComment').value = '';
-        }
-    </script>
 </body>
 
 </html>
